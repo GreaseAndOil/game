@@ -34,14 +34,17 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         self.addChild(sneks.first!.sprite)
+        self.addChild(sneks[1].sprite)
+        self.addChild(sneks[2].sprite)
         self.addChild(apple.sprite)
+        
         for _ in 0...9 {
             for snek in sneks {
                 snek.directions.append("up")
             }
         }
-        sneks[1].sprite.position.y += 50
-        sneks[2].sprite.position.y += 100
+        sneks[1].sprite.position.y += 40
+        sneks[2].sprite.position.y += 80
         
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
         rightSwipe.direction = .right
@@ -92,8 +95,16 @@ class GameScene: SKScene {
     
     
     override func update(_ currentTime: TimeInterval) {
-        for snek in sneks {
-        snek.move()
+        sneks[0].directions.append(sneks[0].direction)
+        for i in 0..<sneks.count {
+            let snek = sneks[i]
+            if i == sneks.count-1 {
+                snek.move()
+                continue
+            }
+            let nextSnek = sneks[1+1]
+            nextSnek.directions.append(snek.directions[0])
+            snek.move()
         }
         if abs(sneks.first!.sprite.position.x - apple.sprite.position.x) < 40 && abs(sneks.first!.sprite.position.y - apple.sprite.position.y) < 40 {
             apple.sprite.position = CGPoint(x: Int.random(in: -200...200), y: Int.random(in: -500...500))
@@ -101,19 +112,20 @@ class GameScene: SKScene {
             self.addChild(Snek().sprite)
             sneks.append(newSnek)
         }
-        if sneks.first!.sprite.position.x < -350 {
-            sneks.first!.sprite.position.x = 350
+        for snek in sneks {
+        if snek.sprite.position.x < -350 {
+            snek.sprite.position.x = 350
         }
-        if sneks.first!.sprite.position.x > 350 {
-            sneks.first!.sprite.position.x = -350
+        if snek.sprite.position.x > 350 {
+            snek.sprite.position.x = -350
         }
-        if sneks.first!.sprite.position.y > 700 {
-            sneks.first!.sprite.position.y = -700
+        if snek.sprite.position.y > 700 {
+            snek.sprite.position.y = -700
         }
-        if sneks.first!.sprite.position.y < -700 {
-             sneks.first!.sprite.position.y = 700
+        if snek.sprite.position.y < -700 {
+             snek.sprite.position.y = 700
         }
-
+        }
         // Called before each frame is rendered
     }
 }
