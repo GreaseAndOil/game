@@ -17,6 +17,8 @@
 		5FA2B585225FDA1B0061CC76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FA2B583225FDA1B0061CC76 /* LaunchScreen.storyboard */; };
 		5FA2B590225FDA1B0061CC76 /* gameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2B58F225FDA1B0061CC76 /* gameTests.swift */; };
 		5FA2B59B225FDA1B0061CC76 /* gameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2B59A225FDA1B0061CC76 /* gameUITests.swift */; };
+		5FA2B5A9225FDDDF0061CC76 /* snek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2B5A8225FDDDF0061CC76 /* snek.swift */; };
+		5FDBF00F2284C54C008FD517 /* apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDBF00E2284C54C008FD517 /* apple.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		5FA2B596225FDA1B0061CC76 /* gameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FA2B59A225FDA1B0061CC76 /* gameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameUITests.swift; sourceTree = "<group>"; };
 		5FA2B59C225FDA1B0061CC76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FA2B5A8225FDDDF0061CC76 /* snek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = snek.swift; sourceTree = "<group>"; };
+		5FDBF00E2284C54C008FD517 /* apple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apple.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,8 @@
 				5FA2B576225FDA1A0061CC76 /* GameScene.sks */,
 				5FA2B578225FDA1A0061CC76 /* Actions.sks */,
 				5FA2B57A225FDA1A0061CC76 /* GameScene.swift */,
+				5FA2B5A8225FDDDF0061CC76 /* snek.swift */,
+				5FDBF00E2284C54C008FD517 /* apple.swift */,
 				5FA2B57C225FDA1A0061CC76 /* GameViewController.swift */,
 				5FA2B57E225FDA1A0061CC76 /* Main.storyboard */,
 				5FA2B581225FDA1B0061CC76 /* Assets.xcassets */,
@@ -269,6 +275,8 @@
 			files = (
 				5FA2B57B225FDA1A0061CC76 /* GameScene.swift in Sources */,
 				5FA2B57D225FDA1A0061CC76 /* GameViewController.swift in Sources */,
+				5FA2B5A9225FDDDF0061CC76 /* snek.swift in Sources */,
+				5FDBF00F2284C54C008FD517 /* apple.swift in Sources */,
 				5FA2B575225FDA1A0061CC76 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
