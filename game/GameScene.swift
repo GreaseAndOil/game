@@ -19,13 +19,21 @@ class GameScene: SKScene {
         if sender.state == .ended {
             switch sender.direction {
             case .right:
-                sneks.first!.direction = "right"
+                if sneks.first!.direction != "left" {
+                    sneks.first!.direction = "right"
+                }
             case .left:
-                sneks.first!.direction = "left"
+                if sneks.first!.direction != "right" {
+                    sneks.first!.direction = "left"
+                }
             case .up:
-                sneks.first!.direction = "up"
+                if sneks.first!.direction != "down" {
+                    sneks.first!.direction = "up"
+                }
             case .down:
-                sneks.first!.direction = "down"
+                if sneks.first!.direction != "up" {
+                    sneks.first!.direction = "down"
+                }
             default:
                 break
             }
@@ -43,18 +51,20 @@ class GameScene: SKScene {
                 snek.directions.append("up")
             }
         }
-        sneks[1].sprite.position.y += 40
-        sneks[2].sprite.position.y += 80
+        sneks[1].sprite.position.y -= 50
+        sneks[2].sprite.position.y -= 100
         
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
         rightSwipe.direction = .right
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
         leftSwipe.direction = .left
+        leftSwipe.direction = UISwipeGestureRecognizer.Direction.left
         let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
         downSwipe.direction = .down
         downSwipe.direction = UISwipeGestureRecognizer.Direction.down
         let upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
         upSwipe.direction = .up
+        
         
         view.addGestureRecognizer(rightSwipe)
         view.addGestureRecognizer(leftSwipe)
@@ -102,15 +112,30 @@ class GameScene: SKScene {
                 snek.move()
                 continue
             }
-            let nextSnek = sneks[1+1]
+            let nextSnek = sneks[i+1]
             nextSnek.directions.append(snek.directions[0])
             snek.move()
         }
         if abs(sneks.first!.sprite.position.x - apple.sprite.position.x) < 40 && abs(sneks.first!.sprite.position.y - apple.sprite.position.y) < 40 {
             apple.sprite.position = CGPoint(x: Int.random(in: -200...200), y: Int.random(in: -500...500))
             let newSnek = Snek()
-            self.addChild(Snek().sprite)
+            self.addChild(newSnek.sprite)
             sneks.append(newSnek)
+            newSnek.sprite.position = sneks.last!.sprite.position
+            if sneks.last!.directions.last == "up" {
+                newSnek.sprite.position.y -= 50
+            }
+            if sneks.last!.directions.last == "down" {
+                newSnek.sprite.position.y += 50
+            }
+            if sneks.last!.directions.last == "left" {
+                newSnek.sprite.position.x += 50
+            }
+            if sneks.last!.directions.last == "right" {
+                newSnek.sprite.position.x -= 50
+            }
+            
+
         }
         for snek in sneks {
         if snek.sprite.position.x < -350 {
