@@ -11,7 +11,8 @@ import GameplayKit
 
 class GameScene: SKScene {
     var sneks = [Snek(), Snek(), Snek()]
-
+    var controller : GameViewController?
+    
     var apple = Apple()
     
     
@@ -118,10 +119,15 @@ class GameScene: SKScene {
         }
         if abs(sneks.first!.sprite.position.x - apple.sprite.position.x) < 40 && abs(sneks.first!.sprite.position.y - apple.sprite.position.y) < 40 {
             apple.sprite.position = CGPoint(x: Int.random(in: -200...200), y: Int.random(in: -500...500))
+            if sneks.count == 100 {
+                controller!.gameOver()
+            }
             let newSnek = Snek()
             self.addChild(newSnek.sprite)
-            sneks.append(newSnek)
+            newSnek.directions = sneks.last!.directions
             newSnek.sprite.position = sneks.last!.sprite.position
+            sneks.append(newSnek)
+            print("count: " + String(sneks.count))
             if sneks.last!.directions.last == "up" {
                 newSnek.sprite.position.y -= 50
             }

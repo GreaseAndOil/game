@@ -21,7 +21,6 @@ class Snek {
     }
 
     func move() {
-        print(directions.count)
         let dir = directions[0]
         directions.removeFirst()
         switch dir {
